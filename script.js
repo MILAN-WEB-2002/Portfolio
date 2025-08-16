@@ -264,6 +264,105 @@ function validateEmail(email) {
     return re.test(email);
 }
 
+// Resume download functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const downloadResumeBtn = document.getElementById('download-resume');
+    
+    if (downloadResumeBtn) {
+        downloadResumeBtn.addEventListener('click', () => {
+            try {
+                // Create a temporary link element
+                const link = document.createElement('a');
+                
+                // Set the resume file path - use relative path for hosting
+                link.href = './Resume (1) (3).pdf';
+                
+                // Force download behavior with explicit attributes
+                link.download = 'Milan_Sunny_Resume.pdf';
+                link.setAttribute('download', 'Milan_Sunny_Resume.pdf');
+                link.setAttribute('type', 'application/pdf');
+                link.setAttribute('rel', 'noopener noreferrer');
+                
+                // Prevent opening in new tab and force download
+                link.style.display = 'none';
+                link.target = '_self';
+                
+                // Add to DOM, click, and remove
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Show success message
+                showDownloadMessage();
+            } catch (error) {
+                console.error('Download failed:', error);
+                // Fallback: open in new tab if download fails
+                window.open('./Resume (1) (3).pdf', '_blank');
+            }
+        });
+    }
+});
+
+// Show download success message
+function showDownloadMessage() {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = 'download-notification';
+    notification.innerHTML = `
+        <i class="fas fa-check-circle"></i>
+        <span>Resume download started!</span>
+    `;
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Show notification
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
+    
+    // Remove notification after 3 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            if (document.body.contains(notification)) {
+                document.body.removeChild(notification);
+            }
+        }, 300);
+    }, 3000);
+}
+
+// Add CSS for download notification
+const notificationStyle = document.createElement('style');
+notificationStyle.textContent = `
+    .download-notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(45deg, #00d4ff, #0099cc);
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        z-index: 10000;
+        transform: translateX(400px);
+        transition: transform 0.3s ease;
+        font-weight: 500;
+    }
+    
+    .download-notification.show {
+        transform: translateX(0);
+    }
+    
+    .download-notification i {
+        font-size: 1.2rem;
+    }
+`;
+document.head.appendChild(notificationStyle);
+
 // Add some interactive console messages
 console.log('%c👋 Welcome to my portfolio!', 'color: #2563eb; font-size: 20px; font-weight: bold;');
 console.log('%cFeel free to explore the code and get in touch!', 'color: #666; font-size: 14px;');

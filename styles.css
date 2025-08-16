@@ -612,6 +612,40 @@ body {
     width: 20px;
 }
 
+.contact-actions {
+    margin-top: 2rem;
+}
+
+.contact-actions .btn-resume {
+    background: linear-gradient(45deg, #2563eb, #1d4ed8);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.contact-actions .btn-resume:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+    background: linear-gradient(45deg, #1d4ed8, #2563eb);
+}
+
+.contact-actions .btn-resume:active {
+    transform: translateY(0);
+}
+
+.contact-actions .btn-resume i {
+    font-size: 1.1rem;
+}
+
 .social-grid {
     display: flex;
     flex-direction: column;
