@@ -395,7 +395,7 @@ body {
     right: 0;
     bottom: 0;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), 
-                url('/Users/milansunny/Desktop/project/Portfolio/PHOTO-2025-08-16-23-30-43.jpg');
+                url('./PHOTO-2025-08-16-23-30-43.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
